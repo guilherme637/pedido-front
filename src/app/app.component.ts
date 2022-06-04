@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pedidos-front';
+  opened = false;
+
+  public toggleSidebar() {
+    this.opened = !this.opened;
+  }
 }

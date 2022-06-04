@@ -3,14 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PedidoComponent } from './pedido/pedido.component';
+import {SidebarModule} from "ng-sidebar";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PedidoComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
