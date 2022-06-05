@@ -1,0 +1,31 @@
+.sshow {
+  display: block;
+}
+
+.hhidden {
+ display: none;
+}
+ .mmodal {
+ z-index: 1000;
+   position: fixed;
+   top: 30px;
+   bottom: 0;
+   left: 300px;
+   width: 500px;
+ }
+.mmodal-body {
+  background: #fff;
+  margin: 40px;
+  padding: 20px;
+}
+
+.mmodal-background {
+   z-index: 900;
+     position: fixed;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
+     background-color: #000;
+   opacity: 0.95;
+}

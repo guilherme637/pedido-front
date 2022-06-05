@@ -1,0 +1,36 @@
+<div class="container-sm">
+  <form class="row g-3">
+    <div class="d-flex justify-content-center">
+      <div class="col-7">
+        <label for="search" class="visually-hidden">search</label>
+        <input type="search" class="form-control" id="search" placeholder="Pesquise um produto">
+      </div>
+
+      <div class="col-auto-g-3 ms-2">
+        <button type="submit" class="btn btn-primary mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </form>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let produto of produtos">
+      <div class="card">
+        <img src="{{produto.endereco}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{produto.nome}}</h5>
+          <p class="card-text">{{produto.preco}}</p>
+        </div>
+
+        <div class="d-flex justify-content-center m-2">
+          <a class="btn btn-danger stretched-link" [routerLink]="['/pedidos']" [state]="sendDataToPagePedido(produto)">
+            Comprar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

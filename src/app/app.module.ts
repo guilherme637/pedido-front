@@ -3,18 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PedidoComponent } from './pedido/pedido.component';
-import {SidebarModule} from "ng-sidebar";
+import { PedidoComponent } from './infrastructure/pedido/pedido.component';
+import { BodyComponent } from './infrastructure/body/body.component';
+import { SidenavComponent } from './infrastructure/sidenav/sidenav.component';
+import { SettingsComponent } from './infrastructure/settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PedidoComponent,
+    BodyComponent,
+    SidenavComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

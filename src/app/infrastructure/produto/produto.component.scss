@@ -1,0 +1,25 @@
+
+
+#search {
+  border-radius: 100px;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.card-img-top {
+  width:339px;
+  height:200px;
+}
+
+.card:hover {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 1rem;
+  width:339px;
+  .card-img-top {
+    border-bottom: 1px solid black;
+    box-shadow: 0.063rem 0 1.25rem 0 #858585;
+  }
+}
