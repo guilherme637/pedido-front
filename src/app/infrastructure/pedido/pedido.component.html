@@ -4,11 +4,11 @@
       Featured
     </div>
     <div class="card-body">
-      <form [formGroup]="form">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="row g-2">
           <div class="col-md">
             <div class="form-floating">
-              <input type="text" class="form-control" id="produto" value="{{getProduto().nome}}">
+              <input type="text" class="form-control" id="produto" name="produtos" formGroupName="produtos" value="{{getProduto().nome}}">
               <label for="produto">Produto</label>
             </div>
           </div>
@@ -53,6 +53,7 @@
             </table>
           </div>
         </div>
+        <button type="submit" class="btn btn-primary">Finalizar Pedido</button>
       </form>
     </div>
   </div>

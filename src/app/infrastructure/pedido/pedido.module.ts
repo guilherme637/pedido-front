@@ -3,9 +3,10 @@ import {CommonModule, Location} from '@angular/common';
 import {RouterModule} from "@angular/router";
 import {PedidoComponent} from "./pedido.component";
 import {PedidoRoutingModule} from "./pedido.routing.module";
-import {FormBuilder, ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import {PedidoService} from "./pedido.service";
 import {ProdutoModule} from "../produto/produto.module";
+import PedidoForm from "./pedido.form";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,6 @@ import {ProdutoModule} from "../produto/produto.module";
   exports: [
     PedidoComponent
   ],
-  providers: [FormBuilder, PedidoService]
+  providers: [PedidoService, PedidoForm]
 })
 export class PedidoModule { }

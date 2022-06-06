@@ -3,6 +3,7 @@ import {ProdutoVO} from "../VO/produtoVo";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {PedidoService} from "./pedido.service";
 import {ProdutoItemInterface} from "../../domain/produtoItem.interface";
+import PedidoForm from "./pedido.form";
 
 @Component({
   selector: 'app-pedido',
@@ -12,11 +13,12 @@ import {ProdutoItemInterface} from "../../domain/produtoItem.interface";
 export class PedidoComponent implements OnInit {
   private produto: ProdutoVO;
   public produtoAdicional = false;
-  public form: FormGroup = new FormGroup({});
+  public form: FormGroup;
   public produtos: ProdutoItemInterface[] = [];
 
-  constructor(private formBuilder: FormBuilder, private pedido: PedidoService) {
+  constructor(private pedido: PedidoService, private pedidoForm: PedidoForm) {
     this.produto = history.state as ProdutoVO;
+    this.form = this.pedidoForm.form;
   }
 
   ngOnInit(): void {
@@ -33,12 +35,6 @@ export class PedidoComponent implements OnInit {
     //     "preco": "6.90"
     //   }
     // ]
-    this.form = this.formBuilder.group({
-      id: new FormControl(null),
-      usuario: new FormControl(null),
-      statusPedido: new FormControl(null),
-      produtos: new FormControl(null)
-    });
 
     this.getListProduto();
   }
@@ -60,5 +56,9 @@ export class PedidoComponent implements OnInit {
 
   public getOption(): Array<number> {
     return [1,2,3,4,5,6,7,8,9,10];
+  }
+
+  public onSubmit() {
+    console.log(this.pedidoForm.getData());
   }
 }
