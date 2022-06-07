@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProdutoVO} from "../VO/produtoVo";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormGroup} from "@angular/forms";
 import {PedidoService} from "./pedido.service";
 import {ProdutoItemInterface} from "../../domain/produtoItem.interface";
 import PedidoForm from "./pedido.form";
@@ -16,9 +16,10 @@ export class PedidoComponent implements OnInit {
   public form: FormGroup;
   public produtos: ProdutoItemInterface[] = [];
 
-  constructor(private pedido: PedidoService, private pedidoForm: PedidoForm) {
+  constructor(private pedido: PedidoService, private _pedidoForm: PedidoForm) {
     this.produto = history.state as ProdutoVO;
-    this.form = this.pedidoForm.form;
+    this._pedidoForm.produto = this.produto.nome;
+    this.form = this._pedidoForm.form;
   }
 
   ngOnInit(): void {
@@ -39,8 +40,18 @@ export class PedidoComponent implements OnInit {
     this.getListProduto();
   }
 
-  public getProdutoAdicional(): boolean {
+  public getProdutoAdicional() {
+    this._pedidoForm.addProdutosAdicionais();
+    this.defineProdutoAdicional();
+  }
+
+  public defineProdutoAdicional() {
     return this.produtoAdicional = !this.produtoAdicional;
+  }
+
+  public getRemoveProdutosAdicionais(index: number) {
+    this._pedidoForm.removeProdutosAdicionais(index);
+    this.defineProdutoAdicional();
   }
 
   public getListProduto() {
@@ -58,7 +69,10 @@ export class PedidoComponent implements OnInit {
     return [1,2,3,4,5,6,7,8,9,10];
   }
 
+  public get pedidoForm() {
+    return this._pedidoForm
+  }
   public onSubmit() {
-    console.log(this.pedidoForm.getData());
+    console.log(this.form.value);
   }
 }

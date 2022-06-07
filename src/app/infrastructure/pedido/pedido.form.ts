@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Injectable()
 export default class PedidoForm {
@@ -10,8 +10,9 @@ export default class PedidoForm {
       id: [''],
       usuario: [''],
       statusPedido: [''],
-      quantidade: [''],
-      produtos: ['']
+      produto: [''],
+      quantidadeProduto: [1],
+      pedidosAdicionais: this.fb.array([this.produtosAdicionaisGroup()])
     });
   }
 
@@ -36,11 +37,11 @@ export default class PedidoForm {
   }
 
   public get produto(): string {
-    return this.pedidoForm.get('produtos')?.value;
+    return this.pedidoForm.get('produto')?.value;
   }
 
   public set produto(value: string) {
-    this.pedidoForm.get('produtos')?.setValue(value);
+    this.pedidoForm.get('produto')?.setValue(value);
   }
 
   public get statusPedido(): string {
@@ -51,6 +52,32 @@ export default class PedidoForm {
     this.pedidoForm.get('statusPedido')?.setValue(value);
   }
 
+  public get quantidadeProduto(): number {
+    return this.pedidoForm.get('quantidadeProduto')?.value;
+  }
+
+  public set quantidadeProduto(value: number) {
+    this.pedidoForm.get('quantidadeProduto')?.setValue(value)
+  }
+
+  public get produtosAdicionais() {
+    return <FormArray>this.pedidoForm.controls['pedidosAdicionais'];
+  }
+
+  public addProdutosAdicionais() {
+    this.produtosAdicionais.push(this.produtosAdicionaisGroup());
+  }
+
+  public removeProdutosAdicionais(index: number) {
+    this.produtosAdicionais.removeAt(index);
+  }
+
+  public produtosAdicionaisGroup() {
+    return this.fb.group({
+      produtoAdicional: [''],
+      quantidadeProdutoAdicional: ['']
+    });
+  }
   public get isValid(): boolean {
     return this.pedidoForm.valid;
   }
@@ -60,7 +87,8 @@ export default class PedidoForm {
       id: null,
       usuario: 1,
       statusPedido: 'pendente',
-      produtos: this.produto
+      produtos: this.produto,
+      quantidadeProduto: this.quantidadeProduto
     }
   }
 }
